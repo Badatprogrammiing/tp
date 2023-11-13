@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+
+mainframe **sd** verify view
+
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+
+activate LogicManager
+
+activate AddressBookParser
+
+AddressBookParser -> AddressBookParser : verifyView(model::isValidOperation, View.ASSIGNMENT)
+activate AddressBookParser
+
+AddressBookParser -> LogicManager : model.isValidOperation(View.ASSIGNMENT)
+activate LogicManager
+
+LogicManager --> AddressBookParser : isValid
+deactivate LogicManager
+
+AddressBookParser --> AddressBookParser
+
+deactivate AddressBookParser
+
+@enduml

@@ -19,19 +19,7 @@ activate LogicManager
 LogicManager -> AddressBookParser : parseCommand("delete-a 1", model::isValidOperation)
 activate AddressBookParser
 
-AddressBookParser -> AddressBookParser : verifyView(model::isValidOperation, View.ASSIGNMENT)
-activate AddressBookParser
-
-AddressBookParser -> LogicManager : model.isValidOperation(View.ASSIGNMENT)
-activate LogicManager
-
-LogicManager --> AddressBookParser : isValid
-deactivate LogicManager
-
-AddressBookParser --> AddressBookParser
-
-deactivate AddressBookParser
-
+ref over AddressBookParser, LogicManager : verify View
 
 
 create DeleteAssignmentParser
